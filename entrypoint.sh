@@ -62,6 +62,10 @@ else
   postconf -e "message_size_limit = $MSG_SIZE"
 fi
 
+if [[ -f /run/secrets/mail.pass ]]; then
+  RELAY_PASS=`cat /run/secrets/mail.pass`
+fi
+
 # Client settings (for sending to the relay)
 postconf -e "smtp_tls_security_level = encrypt"
 postconf -e "smtp_tls_loglevel = 1"
